@@ -5,7 +5,10 @@ import pdfplumber
 from utils import preprocess_text
 import google.generativeai as genai
 
+
 load_dotenv()
+
+genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 
 
 app = Flask(__name__)
@@ -51,6 +54,23 @@ def index():
     return render_template('index.html')
 
 
+def classify_and_respond(text):
+    prompt = f"""
+    Você é um assistente que classifica emails como 'Produtivo' ou 'Improdutivo' em um contexto de trabalho e sugere uma resposta automática.
+    Considere como Emails que requerem uma ação ou resposta específica (ex.: solicitações de suporte técnico, atualização sobre casos em aberto, dúvidas sobre o sistema).
+    Considere como improdutivos Emails que não necessitam de uma ação imediata (ex.: mensagens de felicitações, agradecimentos).
+
+    Email recebido:
+    \"\"\"{text}\"\"\"
+
+    Classifique o email e gere uma resposta automática. Retorne apenas a responsta sugerida.
+    """
+
+    model = genai.GenerativeModel("gemini-1.5-flash")
+    response = model.generate_content(prompt)
+    return response.text
+
+
 @app.route('/process', methods=['POST'])
 def process_email():
     email_text = request.form.get('email_text', '').strip()
@@ -78,26 +98,6 @@ def process_email():
     return render_template("result.html", original=email_text, response=ai_response)
 
     # return f"<h2>Texto extraído:</h2><p>{email_text}</p>", email_text
-
-
-genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
-
-
-def classify_and_respond(text):
-    prompt = f"""
-    Você é um assistente que classifica emails como 'Produtivo' ou 'Improdutivo' em um contexto de trabalho e sugere uma resposta automática.
-    Considere como Emails que requerem uma ação ou resposta específica (ex.: solicitações de suporte técnico, atualização sobre casos em aberto, dúvidas sobre o sistema).
-    Considere como improdutivos Emails que não necessitam de uma ação imediata (ex.: mensagens de felicitações, agradecimentos).
-
-    Email recebido:
-    \"\"\"{text}\"\"\"
-
-    Classifique o email e gere uma resposta automática. Retorne apenas a responsta sugerida.
-    """
-
-    model = genai.GenerativeModel("gemini-1.5-flash")
-    response = model.generate_content(prompt)
-    return response.text
 
 
 if __name__ == '__main__':
