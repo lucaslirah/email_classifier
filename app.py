@@ -4,7 +4,6 @@ from flask import Flask, render_template, request
 import pdfplumber
 from utils import preprocess_text
 import google.generativeai as genai
-import json
 
 load_dotenv()
 
@@ -33,6 +32,16 @@ def extract_text_from_pdf(file_path):
 
 
 def extract_text_from_txt(file_path):
+    """
+    Esta função extrai o texto de um arquivo TXT.
+
+    Args:
+        file_path (str): Caminho para o arquivo TXT.
+
+
+    Returns:
+        str: Texto extraído do TXT.
+    """
     with open(file_path, 'r', encoding='utf-8') as f:
         return f.read()
 
@@ -92,4 +101,4 @@ def classify_and_respond(text):
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0', port=10000)
