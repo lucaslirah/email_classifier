@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Resultado</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Resultado da Classificação</h1>
+        <h2>Email Original:</h2>
+        <div class="bloco">{{ original }}</div>
+        <h2>Classificação e Resposta:</h2>
+        <div class="bloco">{{ response }}</div>
+        <button><a href="/">← Voltar</a></button>
+    </div>
+</body>
+</html>

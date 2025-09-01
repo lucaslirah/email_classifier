@@ -1,0 +1,6 @@
+```json
+{
+  "categoria": "Produtivo",
+  "resposta": "Prezada Maria Oliveira,\n\nRecebemos seu e-mail e o relatório em anexo. A equipe de desenvolvimento analisará o documento com atenção, focando nas métricas de engajamento do novo módulo CRM.  Enviaremos nosso feedback e sugestões de ajustes até a próxima terça-feira, dia 2 de setembro, às 17h, como solicitado.\n\nAtenciosamente,\nEquipe de Desenvolvimento"
+}
+```

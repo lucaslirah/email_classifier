@@ -1,0 +1,3 @@
+# desconsiderar env e pycache
+.env
+__pycache__/

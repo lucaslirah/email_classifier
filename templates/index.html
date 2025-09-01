@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+    <title>Classificador de Emails</title>
+  </head>
+  <body>
+    <h1>Classificador de Emails</h1>
+    <form action="/process" method="post" enctype="multipart/form-data">
+      <label for="file-upload" class="custom-file-upload">
+        📂 Escolher Arquivo
+      </label>
+      <input id="file-upload" type="file" name="file" />
+      <span id="file-name">Nenhum arquivo selecionado</span>
+
+      <label>Ou insira o texto do email:</label><br />
+      <textarea name="email_text" rows="10" cols="50"></textarea><br /><br />
+
+      <input type="submit" value="Processar" />
+    </form>
+
+    <script>
+      const fileInput = document.getElementById("file-upload");
+      const fileName = document.getElementById("file-name");
+
+      fileInput.addEventListener("change", () => {
+        fileName.textContent =
+          fileInput.files.length > 0
+            ? fileInput.files[0].name
+            : "Nenhum arquivo selecionado";
+      });
+    </script>
+  </body>
+</html>
