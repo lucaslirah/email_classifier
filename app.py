@@ -75,22 +75,20 @@ genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 
 
 def classify_and_respond(text):
-    # prompt = f"""
-    # Você é um assistente que classifica emails como 'Produtivo' ou 'Improdutivo' em um contexto de trabalho e sugere uma resposta automática.
-    # Considere como Emails que requerem uma ação ou resposta específica (ex.: solicitações de suporte técnico, atualização sobre casos em aberto, dúvidas sobre o sistema).
-    # Considere como improdutivos Emails que não necessitam de uma ação imediata (ex.: mensagens de felicitações, agradecimentos).
+    prompt = f"""
+    Você é um assistente que classifica emails como 'Produtivo' ou 'Improdutivo' em um contexto de trabalho e sugere uma resposta automática.
+    Considere como Emails que requerem uma ação ou resposta específica (ex.: solicitações de suporte técnico, atualização sobre casos em aberto, dúvidas sobre o sistema).
+    Considere como improdutivos Emails que não necessitam de uma ação imediata (ex.: mensagens de felicitações, agradecimentos).
 
-    # Email recebido:
-    # \"\"\"{text}\"\"\"
+    Email recebido:
+    \"\"\"{text}\"\"\"
 
-    # Classifique o email e gere uma resposta automática. Retorne apenas a responsta sugerida.
-    # """
+    Classifique o email e gere uma resposta automática. Retorne apenas a responsta sugerida.
+    """
 
-    # model = genai.GenerativeModel("gemini-1.5-flash")
-    # response = model.generate_content(prompt)
-
-    text = "Prezada Maria Oliveira,\n\nRecebemos seu e-mail e o relatório em anexo. A equipe de desenvolvimento analisará o documento com atenção, focando nas métricas de engajamento do novo módulo CRM.  Enviaremos nosso feedback e sugestões de ajustes até a próxima terça-feira, dia 2 de setembro, às 17h, como solicitado.\n\nAtenciosamente,\nEquipe de Desenvolvimento"
-    return text
+    model = genai.GenerativeModel("gemini-1.5-flash")
+    response = model.generate_content(prompt)
+    return response.text
 
 
 if __name__ == '__main__':
