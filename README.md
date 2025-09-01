@@ -46,13 +46,12 @@ python app.py
 
 ## 🌐 Deploy
 A aplicação está disponível online via Render:
-🔗 Acesse aqui
-(substitua pelo seu link real)
+🔗 [Acesse aqui](https://email-classifier-b3zu.onrender.com)
 
 ## 📹 Demonstração em Vídeo
 Assista à apresentação completa da solução:
 ### 🎥 Link para o vídeo no YouTube
-(substitua pelo seu link real)
+[Acesse aqui](https://www.youtube.com/watch?v=pzf70bvk3wg)
 
 ## 📁 Estrutura do Projeto
 ```
